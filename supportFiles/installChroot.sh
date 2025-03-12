@@ -32,12 +32,9 @@ echo Set resolv.conf to use systemd-resolved
 rm /etc/resolv.conf
 ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 
-echo Set root password
-echo "root:toor" | chpasswd
-
 echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 echo "PermitEmptyPasswords yes" >> /etc/ssh/sshd_config
-passwd -d root
+echo "root:1234" | chpasswd
 systemctl enable ssh
 
 echo Remove machine-id
