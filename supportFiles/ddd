@@ -11,31 +11,32 @@ show_menu() {
 }
 
 detect_disk() {
-    # 获取所有可用磁盘信息（GB单位）
-    local disk_info=()
-    while IFS= read -r line; do
-        name=$(cut -d' ' -f1 <<< "$line")
-        size=$(cut -d' ' -f4 <<< "$line")
-        size_gb=$(awk "BEGIN {printf \"%.2f\", $size/1000000000}")
-        disk_info+=("$name" "${size_gb}GB")
-    done < <(lsblk -d -n -b -o NAME,SIZE,RO,TYPE | awk '$3 == "0" && $4 == "disk" {print $1, $2}')
+    # Get all available disks
+    local disks=($(lsblk -d -n -o NAME,RO,TYPE | awk '$3 == "disk" && $2 == "0" {print "/dev/"$1}'))
 
-    # 显示带容量和类型的磁盘菜单
-    echo -e "\n可用磁盘列表："
-    for ((i=0; i<${#disk_info[@]}; i+=2)); do
-        printf "%2d. %-12s %-8s\n" $((i/2+1)) "${disk_info[i]}" "${disk_info[i+1]}"
+    # Error handling
+    if [ ${#disks[@]} -eq 0 ]; then
+        echo "Error: No available disk devices detected!" >&2
+        exit 1
+    fi
+
+    # Display disk list with sizes
+    echo "Available disks:" >&2
+    for i in "${!disks[@]}"; do
+        size=$(lsblk -d -n -b -o SIZE ${disks[i]} | awk '{printf "%.2f GB", $1/1000000000}')
+        printf "%2d. %-12s %8s\n" $((i+1)) "${disks[i]}" "$size" >&2
     done
 
-    # 用户选择逻辑
+    # User selection logic
     while true; do
-        read -p "请选择目标磁盘编号 (1-$((${#disk_info[@]}/2))): " choice
-        if [[ $choice =~ ^[0-9]+$ ]] && ((choice >=1 && choice <= ${#disk_info[@]}/2)); then
-            selected_disk="${disk_info[2*(choice-1)]}"
-            echo "[安全提示] 即将操作磁盘: $selected_disk"
+        read -p "Select target disk number (1-${#disks[@]}): " choice
+        if [[ "$choice" =~ ^[0-9]+$ ]] && (( choice >= 1 && choice <= ${#disks[@]} )); then
+            selected_disk="${disks[choice-1]}"
+            echo "[Security Notice] Selected disk: $selected_disk" >&2
             echo "$selected_disk"
             return
         else
-            echo "输入错误，请输入有效编号"
+            echo "Invalid input. Please enter a valid number between 1-${#disks[@]}"
         fi
     done
 }
@@ -57,11 +58,11 @@ confirm_danger() {
         exit 0
     fi
 
-     # 清除所有分区表和签名
-    echo "正在清除磁盘残留数据..."
+    # Clear disk partitions and signatures
+    echo "Clearing disk residual data..."
     sudo sgdisk --zap-all "$target_disk" 2>/dev/null
     sudo wipefs -a "$target_disk" 2>/dev/null
-    sudo partprobe "$target_disk"  # 强制内核刷新分区表
+    sudo partprobe "$target_disk"  # Force kernel to refresh partition table
 }
 
 install_system() {
@@ -69,14 +70,14 @@ install_system() {
     local image_file="/mnt/$image_name"
     local target_disk
     
-    # 获取用户选择的硬盘
+    # Get user-selected disk
     target_disk=$(detect_disk)
     
-    # 显示磁盘信息
+    # Display disk information
     echo -e "\nDisk Information:"
     fdisk -l "$target_disk" | grep Disk | head -1
     
-    # 检查镜像文件是否存在
+    # Check image file existence
     if [ ! -f "$image_file" ]; then
         echo -e "\nError: Image file $image_file not found!"
         echo "Please:"
@@ -85,20 +86,17 @@ install_system() {
         exit 1
     fi
     
-    # 二次确认
+    # Final confirmation
     confirm_danger "$target_disk" "$image_file"
     
     echo -e "\nStarting system write... (Press Ctrl+C to cancel)"
     sleep 2
     
-    # 执行写入操作
+    # Perform write operation
     dd if="$image_file" of="$target_disk" bs=4M conv=fsync status=progress
     
     echo "──────────────────────────────────────"
-    echo "Write completed! Recommended actions:"
-    echo "1. Disconnect system disk"
-    echo "2. Reboot device"
-    echo "3. Configure via web interface (router IP)"
+    echo "Armbian installed successfully:"
 }
 
 while true; do
