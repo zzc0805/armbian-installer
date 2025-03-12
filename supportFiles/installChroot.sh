@@ -35,6 +35,11 @@ ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 echo Set root password
 echo "root:toor" | chpasswd
 
+echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+echo "PermitEmptyPasswords yes" >> /etc/ssh/sshd_config
+passwd -d root
+systemctl enable ssh
+
 echo Remove machine-id
 rm /etc/machine-id
 
