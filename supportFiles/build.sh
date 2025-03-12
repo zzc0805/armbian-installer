@@ -74,6 +74,8 @@ dd if=/dev/zero of=efiboot.img bs=$SIZE count=1
 mmd -i efiboot.img efi efi/boot
 mcopy -vi efiboot.img $HOME/LIVE_BOOT/tmp/bootx64.efi ::efi/boot/
 
+cp /mnt/armbian.img ${HOME}/LIVE_BOOT/staging/live/
+
 echo Build ISO
 xorriso \
     -as mkisofs \
