@@ -47,6 +47,8 @@ echo Create directories that will contain files for our live environment files a
 mkdir -p $HOME/LIVE_BOOT/{staging/{EFI/boot,boot/grub/x86_64-efi,isolinux,live},tmp}
 
 echo Compress the chroot environment into a Squash filesystem.
+cp /mnt/armbian.img ${HOME}/LIVE_BOOT/chroot/mnt/
+ls ${HOME}/LIVE_BOOT/chroot/mnt/
 mksquashfs $HOME/LIVE_BOOT/chroot $HOME/LIVE_BOOT/staging/live/filesystem.squashfs -e boot
 
 echo Copy kernel and initrd
@@ -73,8 +75,6 @@ dd if=/dev/zero of=efiboot.img bs=$SIZE count=1
 /sbin/mkfs.vfat efiboot.img
 mmd -i efiboot.img efi efi/boot
 mcopy -vi efiboot.img $HOME/LIVE_BOOT/tmp/bootx64.efi ::efi/boot/
-
-cp /mnt/armbian.img ${HOME}/LIVE_BOOT/staging/live/
 
 echo Build ISO
 xorriso \
