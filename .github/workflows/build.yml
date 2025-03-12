@@ -1,11 +1,6 @@
 name: "Build Debian Live Minimal ISO"
 
 on:
-  schedule:
-  # 7AM on the 1st of every month (GitHub is GMT)
-  # https://crontab.guru/#0_7_1_*_*
-    - cron: "0 7 1 * *"
-
   push:
     paths-ignore:
       - 'README.md'
