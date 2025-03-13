@@ -1,12 +1,7 @@
 name: "Build Armbian Installer ISO"
 
 on:
-  push:
-    paths-ignore:
-      - 'README.md'
-      - 'LICENSE'
-
-  workflow_dispatch:
+ workflow_dispatch:
 
 jobs:
   build-release:
