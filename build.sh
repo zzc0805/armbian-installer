@@ -1,6 +1,7 @@
 #!/bin/bash
 mkdir -p armbian
-wget --show-progress=on -O armbian/armbian.img.xz https://mirrors.aliyun.com/armbian-releases/uefi-x86/archive/Armbian_25.2.1_Uefi-x86_noble_current_6.12.13.img.xz
+#https://mirrors.tuna.tsinghua.edu.cn/armbian-releases/uefi-x86/archive/
+curl -# -o armbian/armbian.img.xz https://mirrors.tuna.tsinghua.edu.cn/armbian-releases/uefi-x86/archive/Armbian_25.2.1_Uefi-x86_noble_current_6.12.13.img.xz
 xz -d armbian/armbian.img.xz
 ls -lh armbian/
 
