@@ -15,15 +15,15 @@ if [[ -z "$DOWNLOAD_URL" ]]; then
 fi
 
 echo "下载地址: $DOWNLOAD_URL"
+
 echo "下载文件: $FILE_NAME -> $OUTPUT_PATH"
-curl -# -o "$OUTPUT_PATH" "$DOWNLOAD_URL"
+curl -L -o "$OUTPUT_PATH" "$DOWNLOAD_URL"
 
 if [[ $? -eq 0 ]]; then
   echo "下载armbian成功！"
   file armbian/armbian.img.xz
   echo "showfile end"
-  gzip -d armbian/armbian.img.xz
-  xz -d armbian/armbian.img
+  xz -d armbian/armbian.img.xz
   ls -lh armbian/
 else
   echo "下载失败！"
