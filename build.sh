@@ -21,7 +21,7 @@ curl -L -o "$OUTPUT_PATH" "$DOWNLOAD_URL"
 if [[ $? -eq 0 ]]; then
   echo "下载armbian成功!"
   file armbian/armbian.img.xz
-  echo "解压为:armbian.img"
+  echo "正在解压为:armbian.img"
   xz -d armbian/armbian.img.xz
   ls -lh armbian/
   echo "准备合成 armbian 安装器"
