@@ -58,11 +58,6 @@ confirm_danger() {
         exit 0
     fi
 
-    # Clear disk partitions and signatures
-    echo "Clearing disk residual data..."
-    sudo sgdisk --zap-all "$target_disk" 2>/dev/null
-    sudo wipefs -a "$target_disk" 2>/dev/null
-    sudo partprobe "$target_disk"  # Force kernel to refresh partition table
 }
 
 install_system() {

@@ -24,14 +24,14 @@ jobs:
       - name: "Build Image"
         run: |
           ./build.sh
-
+      
       - name: "Publish"
-        uses: "marvinpinto/action-automatic-releases@latest"
+        uses: softprops/action-gh-release@v2.2.1
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: false
-          automatic_release_tag: "${{ env.DATESTAMP }}"
-          title: "Debian 10 Live Minimal ISO"
+          tag_name: "Armbian Installer x86_64 ISO"
+          body_path: ${{ github.workspace }}/info.md
           files: |
-            output/debian10-live-minimal-x86_64.iso
-            output/packages.txt
+            output/armbian-installer-x86_64.iso
+          token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
