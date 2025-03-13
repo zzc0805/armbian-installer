@@ -2,7 +2,7 @@
 # This shell script is executed inside the chroot
 
 echo Set hostname
-echo "amrbian-installer" > /etc/hostname
+echo "installer" > /etc/hostname
 
 # Set as non-interactive so apt does not prompt for user input
 export DEBIAN_FRONTEND=noninteractive
