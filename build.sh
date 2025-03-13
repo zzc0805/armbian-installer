@@ -14,6 +14,7 @@ if [[ -z "$DOWNLOAD_URL" ]]; then
   exit 1
 fi
 
+echo "下载地址: $DOWNLOAD_URL"
 echo "下载文件: $FILE_NAME -> $OUTPUT_PATH"
 curl -# -o "$OUTPUT_PATH" "$DOWNLOAD_URL"
 
@@ -28,6 +29,7 @@ else
   echo "下载失败！"
   exit 1
 fi
+exit 1
 
 mkdir -p output
 #docker run --privileged --rm -v $(pwd)/output:/output -v $(pwd)/supportFiles:/supportFiles:ro debian:buster /supportFiles/build.sh 
