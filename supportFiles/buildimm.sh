@@ -58,7 +58,7 @@ cp -v $HOME/LIVE_BOOT/chroot/boot/initrd.img-* $HOME/LIVE_BOOT/staging/live/init
 
 echo Copy boot config files
 cp -v /supportFiles/imm-isolinux.cfg $HOME/LIVE_BOOT/staging/isolinux/isolinux.cfg
-cp -v /supportFiles/grub.cfg $HOME/LIVE_BOOT/staging/boot/grub/grub.cfg
+cp -v /supportFiles/imm-grub.cfg $HOME/LIVE_BOOT/staging/boot/grub/grub.cfg
 cp -v /supportFiles/grub-standalone.cfg $HOME/LIVE_BOOT/tmp/grub-standalone.cfg
 touch $HOME/LIVE_BOOT/staging/DEBIAN_CUSTOM
 
