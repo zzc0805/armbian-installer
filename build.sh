@@ -19,7 +19,10 @@ curl -# -o "$OUTPUT_PATH" "$DOWNLOAD_URL"
 
 if [[ $? -eq 0 ]]; then
   echo "下载armbian成功！"
-  xz -d armbian/armbian.img.xz
+  file armbian/armbian.img.xz
+  echo "showfile end"
+  gzip -d armbian/armbian.img.xz
+  xz -d armbian/armbian.img
   ls -lh armbian/
 else
   echo "下载失败！"
