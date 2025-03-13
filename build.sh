@@ -15,25 +15,22 @@ if [[ -z "$DOWNLOAD_URL" ]]; then
 fi
 
 echo "下载地址: $DOWNLOAD_URL"
-
 echo "下载文件: $FILE_NAME -> $OUTPUT_PATH"
 curl -L -o "$OUTPUT_PATH" "$DOWNLOAD_URL"
 
 if [[ $? -eq 0 ]]; then
-  echo "下载armbian成功！"
+  echo "下载armbian成功!"
   file armbian/armbian.img.xz
-  echo "showfile end"
+  echo "解压为:armbian.img"
   xz -d armbian/armbian.img.xz
   ls -lh armbian/
+  echo "准备合成 armbian 安装器"
 else
   echo "下载失败！"
   exit 1
 fi
-exit 1
 
 mkdir -p output
-#docker run --privileged --rm -v $(pwd)/output:/output -v $(pwd)/supportFiles:/supportFiles:ro debian:buster /supportFiles/build.sh 
-
 docker run --privileged --rm \
         -v $(pwd)/output:/output \
         -v $(pwd)/supportFiles:/supportFiles:ro \
