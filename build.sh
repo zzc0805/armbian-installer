@@ -1,10 +1,18 @@
 #!/bin/bash
 mkdir -p armbian
-#https://mirrors.tuna.tsinghua.edu.cn/armbian-releases/uefi-x86/archive/
+
+# 读取环境变量 (带默认值)
+VERSION_TYPE="${VERSION_TYPE:-standard}"
+if [ "$VERSION_TYPE" = "mini" ]; then
+  echo "执行迷你版构建..."
+  FILE_NAME="Armbian_25.2.1_Uefi-x86_noble_current_6.12.13_minimal.img.xz"
+else
+  echo "执行标准版构建..."
+  FILE_NAME="Armbian_25.2.1_Uefi-x86_noble_current_6.12.13.img.xz"
+fi
 
 REPO="wukongdaily/armbian-installer"
 TAG="2025-03-12"
-FILE_NAME="Armbian_25.2.1_Uefi-x86_noble_current_6.12.13.img.xz"
 OUTPUT_PATH="armbian/armbian.img.xz"
 
 DOWNLOAD_URL=$(curl -s https://api.github.com/repos/$REPO/releases/tags/$TAG | jq -r '.assets[] | select(.name == "'"$FILE_NAME"'") | .browser_download_url')

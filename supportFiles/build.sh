@@ -99,6 +99,6 @@ xorriso \
     "${HOME}/LIVE_BOOT/staging"
 
 echo Copy output
-cp -v $HOME/LIVE_BOOT/debian-custom.iso /output/armbian-installer-x86_64.iso
-chmod -v 666 /output/armbian-installer-x86_64.iso
+cp -v $HOME/LIVE_BOOT/debian-custom.iso /output/armbian-installer-x86_64-standard.iso
+chmod -v 666 /output/armbian-installer-x86_64-standard.iso
 ls -lah /output
