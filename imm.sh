@@ -2,8 +2,8 @@
 mkdir -p imm
 #https://github.com/wukongdaily/AutoBuildImmortalWrt/releases/download/Autobuild-x86-64/immortalwrt-24.10.0-x86-64-generic-squashfs-combined-efi.img.gz
 
-REPO="wukongdaily/AutoBuildImmortalWrt"
-TAG="Autobuild-x86-64"
+REPO="wukongdaily/armbian-installer"
+TAG="2025-03-12"
 FILE_NAME="immortalwrt-24.10.0-x86-64-generic-squashfs-combined-efi.img.gz"
 OUTPUT_PATH="imm/immortalwrt.img.gz"
 
@@ -36,4 +36,4 @@ docker run --privileged --rm \
         -v $(pwd)/supportFiles:/supportFiles:ro \
         -v $(pwd)/imm/immortalwrt.img:/mnt/immortalwrt.img \
         debian:buster \
-        /supportFiles/buildimm.sh
+        /supportFiles/immortalwrt/build.sh

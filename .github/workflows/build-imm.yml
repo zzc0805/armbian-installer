@@ -28,8 +28,8 @@ jobs:
       - name: "Publish"
         uses: softprops/action-gh-release@v2.2.1
         with:
-          tag_name: "ImmortalWrt-Installer-x86_64-ISO"
-          body_path: ${{ github.workspace }}/imminfo.md
+          tag_name: "OpenWrt-Installer-x86_64-ISO"
+          body_path: ${{ github.workspace }}/supportFiles/immortalwrt/info.md
           files: |
             output/immortalwrt-installer-x86_64.iso
           token: ${{ secrets.GITHUB_TOKEN }}
