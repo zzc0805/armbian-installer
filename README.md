@@ -11,6 +11,8 @@
 1. 虚拟机使用：各种虚拟机直接选择iso即可
 2. 物理机使用：建议将iso放入ventoy的U盘中
 3. https://www.ventoy.net/cn/download.html
+4. 视频教学：[![YouTube](https://img.shields.io/badge/YouTube-123456?logo=youtube&labelColor=ff0000)](https://youtu.be/6FWyACrNQIg)
+[![Bilibili](https://img.shields.io/badge/Bilibili-123456?logo=bilibili&logoColor=fff&labelColor=fb7299)](https://www.bilibili.com/video/BV1DQXVYFENr)
 
 ## 项目说明和相关Feature
 1. 此项目生成的ISO同时 支持物理机 和 虚拟机
