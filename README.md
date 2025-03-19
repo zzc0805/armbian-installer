@@ -17,7 +17,7 @@
 ## 项目说明和相关Feature
 1. 此项目生成的ISO同时 支持物理机 和 虚拟机
 2. 此项目可分别生成armbian 和 openwrt 两种安装器
-3. 其中OpenWrt分为istoreos安装器和immortalwrt安装器。实际上安装任意一种即可，因为换固件可在网页里随时换。
+3. 其中OpenWrt分为istoreos、immortalwrt、EzOpWrt安装器。实际上安装任意一种即可，因为换固件可在网页里随时换。
 4. istoreos 在虚拟机上并没有安装器,因此本项目算是一种补充。（物理机安装istoreos就可以忽略本项目了）
 5. armbian 安装器 目前构建2种 一种是minimal 一种是标准版 较低配置的x86-64设备建议使用minimal 比如（wyse3040瘦客户机）
 6. 未来可能融入自编译armbian的流程
@@ -33,3 +33,4 @@
 ## 项目参考
 - https://willhaley.com/blog/custom-debian-live-environment/
 - https://github.com/dpowers86/debian-live
+- https://github.com/sirpdboy/openwrt/releases
