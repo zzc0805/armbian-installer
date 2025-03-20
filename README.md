@@ -13,11 +13,12 @@
 3. https://www.ventoy.net/cn/download.html
 4. 视频教学：[![YouTube](https://img.shields.io/badge/YouTube-123456?logo=youtube&labelColor=ff0000)](https://youtu.be/6FWyACrNQIg)
 [![Bilibili](https://img.shields.io/badge/Bilibili-123456?logo=bilibili&logoColor=fff&labelColor=fb7299)](https://www.bilibili.com/video/BV1DQXVYFENr)
+5. 具体的操作方法是:在安装器所在系统里输入 `ddd` 命令 方可调出安装菜单
 
 ## 项目说明和相关Feature
 1. 此项目生成的ISO同时 支持物理机 和 虚拟机
 2. 此项目可分别生成armbian 和 openwrt 两种安装器
-3. 其中OpenWrt分为istoreos、immortalwrt、EzOpWrt安装器。实际上安装任意一种即可，因为换固件可在网页里随时换。
+3. 其中OpenWrt分为istoreos、immortalwrt、EzOpWrt、eSirOpenWrt 安装器。实际上安装任意一种即可，因为换固件可在网页里随时换。
 4. istoreos 在虚拟机上并没有安装器,因此本项目算是一种补充。（物理机安装istoreos就可以忽略本项目了）
 5. armbian 安装器 目前构建2种 一种是minimal 一种是标准版 较低配置的x86-64设备建议使用minimal 比如（wyse3040瘦客户机）
 6. 未来可能融入自编译armbian的流程
