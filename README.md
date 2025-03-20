@@ -37,3 +37,7 @@
 - https://willhaley.com/blog/custom-debian-live-environment/
 - https://github.com/dpowers86/debian-live
 - https://github.com/sirpdboy/openwrt/releases
+- https://github.com/esirplayground
+
+### DONATE&支持⬆️
+[助力按钮](https://wkdaily.cpolar.top/01)
