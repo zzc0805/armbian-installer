@@ -28,33 +28,28 @@ file "$OUTPUT_PATH"
 extension="${filename##*.}"  # 获取文件扩展名
 case $extension in
   gz)
-    echo "处理 gz 格式..."
+    echo "gz正在解压$OUTPUT_PATH"
     gunzip -f "$OUTPUT_PATH" || true
-    final_name="imm/custom.img"
+    final_name=$(find imm -name '*.img' -print -quit)
+    mv "$final_name" "imm/custom.img"
     ;;
   zip)
-    echo "处理 zip 格式..."
+    echo "zip正在解压$OUTPUT_PATH"
     unzip -j -o "$OUTPUT_PATH" -d imm/  # -j 忽略目录结构 
     final_name=$(find imm -name '*.img' -print -quit)
+    mv "$final_name" "imm/custom.img"
     ;;
   xz)
-    echo "处理 xz 格式..."
+    echo "xz正在解压$OUTPUT_PATH"
     xz -d --keep "$OUTPUT_PATH"  # 保留原文件 
     final_name="${OUTPUT_PATH%.*}"
+    mv "$final_name" "imm/custom.img"
     ;;
   *)
     echo "❌ 不支持的压缩格式: $extension"
     exit 1
     ;;
 esac
-
-# 统一重命名
-if [ -n "$final_name" ]; then
-  mv "$final_name" "imm/custom.img"
-else
-  echo "❌ ZIP 文件中未找到 .img 文件"
-  exit 1
-fi
 
 
 # 检查最终文件
