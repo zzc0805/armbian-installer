@@ -27,6 +27,7 @@
 4. istoreos 在虚拟机上并没有安装器,因此本项目算是一种补充。（物理机安装istoreos就可以忽略本项目了）
 5. armbian 安装器 目前构建2种 一种是minimal 一种是标准版 较低配置的x86-64设备建议使用minimal 比如（wyse3040瘦客户机）
 6. 未来可能融入自编译armbian的流程
+7. 支持自定义openwrt镜像生成iso安装器,其中openwrt镜像的压缩包格式是`img.gz` `img.zip` `img.xz`三种
 
 
 
