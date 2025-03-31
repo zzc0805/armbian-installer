@@ -22,12 +22,12 @@
 
 
 ## 项目说明和相关Feature
-1. 此项目生成的ISO同时 支持物理机 和 虚拟机
-2. 此项目可分别生成armbian 和 openwrt 两种安装器
+1. 此项目生成的ISO同时 支持物理机 和 虚拟机的安装
+2. 此项目生成的安装器用于各种常见的img格式嵌入式系统:`OpenWrt`、`Armbian`、`HAOS`、`LibreELEC`等
 3. 其中OpenWrt分为istoreos、immortalwrt、EzOpWrt、eSirOpenWrt 安装器。实际上安装任意一种即可，因为换固件可在网页里随时换。
 4. istoreos 在虚拟机上并没有安装器,因此本项目算是一种补充。（物理机安装istoreos就可以忽略本项目了）
 5. armbian 安装器 目前构建2种 一种是minimal 一种是标准版 较低配置的x86-64设备建议使用minimal 比如（wyse3040瘦客户机）
-6. 未来可能融入自编译armbian的流程
+6. HAOS可自定义下载地址,默认构建HAOS 15.0 `haos_generic-x86-64-15.0.img.xz`
 7. 支持自定义openwrt镜像生成iso安装器,其中openwrt镜像的压缩包格式是`img.gz` `img.zip` `img.xz`三种
 
 
