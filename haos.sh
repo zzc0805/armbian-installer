@@ -56,7 +56,7 @@ esac
 if [ -f "imm/haos.img" ]; then
   echo "✅ 解压成功"
   ls -lh imm/
-  echo "✅ 准备合成 自定义OpenWrt 安装器"
+  echo "✅ 准备合成 自定义HAOS 安装器"
 else
   echo "❌ 错误：最终文件 imm/haos.img 不存在"
   exit 1
