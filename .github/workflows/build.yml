@@ -12,6 +12,7 @@ on:
           - "standard"
           - "debian12_minimal"
           - "ubuntu24_minimal"
+          - "homeassistant_debian12_minimal"
 
 jobs:
   build-release:
@@ -35,6 +36,11 @@ jobs:
           if [ "$VERSION_TYPE" = "ubuntu24_minimal" ]; then
             mv output/armbian-installer-x86_64-standard.iso output/armbian-installer-x86_64-ubuntu24_minimal.iso
           fi
+
+          if [ "$VERSION_TYPE" = "homeassistant_debian12_minimal" ]; then
+            mv output/armbian-installer-x86_64-standard.iso output/armbian-installer-x86_64-homeassistant_debian12_minimal.iso
+          fi
+          
 
       - name: "Publish"
         uses: softprops/action-gh-release@v2.2.1
