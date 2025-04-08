@@ -2,11 +2,15 @@
 mkdir -p openwrt
 
 REPO="wukongdaily/armbian-installer"
-TAG="2025-04-07"
-FILE_NAME="istoreos-22.03.7-2025040711-x86-64-squashfs-combined-efi.img.gz"
+TAG="2025-03-12"
+FILE_NAME="istoreos-22.03.7-2024122712-x86-64-squashfs-combined-efi.img.gz"
 OUTPUT_PATH="openwrt/istoreos.img.gz"
-# DOWNLOAD_URL=$(curl -s https://api.github.com/repos/$REPO/releases/tags/$TAG | jq -r '.assets[] | select(.name == "'"$FILE_NAME"'") | .browser_download_url')
-DOWNLOAD_URL="https://fw0.koolcenter.com/iStoreOS/x86_64_efi/$FILE_NAME"
+DOWNLOAD_URL=$(curl -s https://api.github.com/repos/$REPO/releases/tags/$TAG | jq -r '.assets[] | select(.name == "'"$FILE_NAME"'") | .browser_download_url')
+
+if [[ -z "$DOWNLOAD_URL" ]]; then
+  echo "错误：未找到文件 $FILE_NAME"
+  exit 1
+fi
 
 echo "下载地址: $DOWNLOAD_URL"
 echo "下载文件: $FILE_NAME -> $OUTPUT_PATH"
